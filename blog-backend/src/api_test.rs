@@ -2,6 +2,7 @@ pub mod api_tests {
     use crate::api_calls::open_calls;
     use actix_web::{test, App};
 
+    // Test to check that the /posts endpoint responds
     #[actix_rt::test]
     async fn test_get_posts_responds() {
         let mut app = test::init_service(App::new().service(open_calls::get_posts)).await;
@@ -11,6 +12,7 @@ pub mod api_tests {
         assert!(resp.status().is_success());
     }
 
+    // Test to check that an invalid endpoint /wrongEndpoint does not respond
     #[actix_rt::test]
     async fn test_get_posts_fails() {
         let mut app = test::init_service(App::new().service(open_calls::get_posts)).await;
@@ -20,6 +22,7 @@ pub mod api_tests {
         assert!(!resp.status().is_success());
     }
 
+    // Test to check that the /posts/id endpoint responds
     #[actix_rt::test]
     async fn test_get_posts_id_responds() {
         let mut app = test::init_service(App::new().service(open_calls::get_posts)).await;

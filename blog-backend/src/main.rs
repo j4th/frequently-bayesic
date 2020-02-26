@@ -5,6 +5,8 @@ mod api_test;
 use crate::api_calls::open_calls;
 use actix_web::{App, HttpServer};
 
+// Binding function of the API, initializes the actix (https://actix.rs/) server and binds the endpoints
+// found in the api_calls.rs file to that server
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| App::new().service(open_calls::get_posts))
