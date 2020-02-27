@@ -17,7 +17,7 @@ pub mod api_tests {
     async fn test_get_posts_responds_with_json() {
         let mut app = test::init_service(App::new().service(open_calls::get_posts)).await;
         let req = test::TestRequest::get().uri("/posts").to_request();
-        let resp: Vec<PostInformation> = test::read_response_json(&mut app, req).await;
+        let _resp: Vec<PostInformation> = test::read_response_json(&mut app, req).await;
 
         // if the PostInformation objects serialize succesfully then we can assume the JSON is as expected
         assert!(true);

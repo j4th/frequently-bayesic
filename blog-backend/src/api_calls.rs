@@ -11,17 +11,17 @@ pub mod open_calls {
     }
 
     async fn get_post_information() -> Vec<PostInformation> {
-        let mut retVal: Vec<PostInformation> = Vec::new();
-        retVal.push(PostInformation {
+        let mut ret_val: Vec<PostInformation> = Vec::new();
+        ret_val.push(PostInformation {
             title: "This is the first post test example".to_string(),
             id: 0,
         });
-        retVal.push(PostInformation {
+        ret_val.push(PostInformation {
             title: "This is the second post test example".to_string(),
             id: 1,
         });
 
-        return retVal;
+        return ret_val;
     }
 
     #[get("/posts/{postid}")]
