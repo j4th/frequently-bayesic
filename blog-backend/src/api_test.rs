@@ -53,4 +53,15 @@ pub mod api_tests {
         // if the Post object serialize succesfully then we can assume the JSON is as expected
         assert!(true);
     }
+
+    // Tests to check that the /posts/id endpoint returns the correct ID that is requested of it
+    #[actix_rt::test]
+    async fn test_get_posts_id_responds_with_correct_id() {
+        let mut app = test::init_service(App::new().service(open_calls::get_posts_by_id)).await;
+        let req = test::TestRequest::get().uri("/posts/1").to_request();
+        let resp: Post = test::read_response_json(&mut app, req).await;
+
+        // if the Post object serialize succesfully then we can assume the JSON is as expected
+        assert_eq!(resp.id, 1);
+    }
 }
