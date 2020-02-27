@@ -1,6 +1,7 @@
 mod api_calls;
 #[cfg(test)]
 mod api_test;
+mod parameter_structs;
 
 use crate::api_calls::open_calls;
 use actix_web::{App, HttpServer};
