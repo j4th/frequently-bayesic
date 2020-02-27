@@ -1,6 +1,6 @@
 pub mod api_tests {
     use crate::api_calls::open_calls;
-    use crate::parameter_structs::parameter_structs::PostInformation;
+    use crate::parameter_structs::parameter_structs::{Post, PostInformation};
     use actix_web::{test, App};
 
     // Test to check that the /posts endpoint responds
@@ -13,6 +13,7 @@ pub mod api_tests {
         assert!(resp.status().is_success());
     }
 
+    // Tests to see if the /posts endpoint returns valid JSON
     #[actix_rt::test]
     async fn test_get_posts_responds_with_json() {
         let mut app = test::init_service(App::new().service(open_calls::get_posts)).await;
@@ -23,7 +24,7 @@ pub mod api_tests {
         assert!(true);
     }
 
-    // Test to check that an invalid endpoint /wrongEndpoint does not respond
+    // Tests to check that an invalid endpoint /wrongEndpoint does not respond
     #[actix_rt::test]
     async fn test_get_posts_fails() {
         let mut app = test::init_service(App::new().service(open_calls::get_posts)).await;
@@ -32,7 +33,7 @@ pub mod api_tests {
         assert!(!resp.status().is_success());
     }
 
-    // Test to check that the /posts/id endpoint responds
+    // Tests to check that the /posts/id endpoint responds
     #[actix_rt::test]
     async fn test_get_posts_id_responds() {
         let mut app = test::init_service(App::new().service(open_calls::get_posts_by_id)).await;
@@ -40,5 +41,16 @@ pub mod api_tests {
         let resp = test::call_service(&mut app, req).await;
 
         assert!(resp.status().is_success());
+    }
+
+    // Tests to check that the /posts/id endpoint returns valid JSON
+    #[actix_rt::test]
+    async fn test_get_posts_id_responds_with_json() {
+        let mut app = test::init_service(App::new().service(open_calls::get_posts_by_id)).await;
+        let req = test::TestRequest::get().uri("/posts/1").to_request();
+        let _resp: Post = test::read_response_json(&mut app, req).await;
+
+        // if the Post object serialize succesfully then we can assume the JSON is as expected
+        assert!(true);
     }
 }

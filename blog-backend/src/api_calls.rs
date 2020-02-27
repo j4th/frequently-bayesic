@@ -5,12 +5,13 @@ pub mod open_calls {
     // Get request that returns a JSON file of post titles and their corresponding id's
     #[get("/posts")]
     async fn get_posts() -> impl Responder {
-        let posts: Vec<PostInformation> = get_post_information().await;
+        let posts: Vec<PostInformation> = get_posts_information().await;
 
         HttpResponse::Ok().json(posts)
     }
 
-    async fn get_post_information() -> Vec<PostInformation> {
+    // retrieves the post overview information
+    async fn get_posts_information() -> Vec<PostInformation> {
         let mut ret_val: Vec<PostInformation> = Vec::new();
         ret_val.push(PostInformation {
             title: "This is the first post test example".to_string(),

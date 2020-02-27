@@ -13,6 +13,15 @@ pub mod parameter_structs {
     #[derive(Serialize, Deserialize)]
     pub struct PostInformation {
         pub title: String,
-        pub id: i32,
+        pub id: u32,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Post {
+        pub title: String,
+        pub article: String,
+        pub author: String,
+        pub date: String,
+        pub id: u32,
     }
 }
