@@ -25,7 +25,7 @@ pub mod api_tests {
     // Test to check that the /posts/id endpoint responds
     #[actix_rt::test]
     async fn test_get_posts_id_responds() {
-        let mut app = test::init_service(App::new().service(open_calls::get_posts)).await;
+        let mut app = test::init_service(App::new().service(open_calls::get_posts_by_id)).await;
         let req = test::TestRequest::get().uri("/posts/1").to_request();
         let resp = test::call_service(&mut app, req).await;
 
